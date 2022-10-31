@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			ul{
+				list-style: none;
+			}		
+		</style>
+	</head>
+	<body>
+		<div>
+			<table border="2">
+				<tr><td colspan="2" align="center">信息统计</td></tr>
+				<tr>
+					<td>姓名：</td>
+					<td><input type="text"></td>
+				</tr>
+				<tr>
+					<td>年龄：</td>
+					<td><input type="text"/></td>
+				</tr>
+				<tr>
+					<td>性别：</td>
+					<td>
+						<input type="radio" name="sex" value="1"/>男
+						<input type="radio" name="sex" value="0"/>女
+					</td>
+				</tr>
+				<tr>
+					<td>爱好：</td>
+					<td>
+						<ul>
+						<li><input type="checkbox" name="body" value="1">旅游</li>
+						<li><input type="checkbox" name="body" value="2">登山</li>
+						<li><input type="checkbox" name="body" value="3">健身</li>
+						<li><input type="checkbox" name="body" value="4">上网</li>
+						<li><input type="checkbox" name="body" value="5">游泳</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>学历：</td>
+					<td>
+						<select name="degree" id="">
+							<option value="">--请选择--</option>
+							<option value="1">专科</option>
+							<option value="2">本科</option>
+							<option value="3">硕士</option>
+							<option value="4">博士</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>自我介绍：</td>
+					<td><textarea name="" id="" cols="30" rows="10" >自我介绍：</textarea></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button>提交</button>
+						<button>重置</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
