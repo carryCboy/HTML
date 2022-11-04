@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>复制</title>
+	</head>
+	<script>
+		function myFunction(){
+			var x = document.getElementById('demo1').value
+			document.getElementById('demo2').value=x
+			document.getElementById('demo3').innerHTML='复制成功！'
+			
+						
+		}
+		
+	</script>
+	<body>
+		
+		<p><input type="text"  id="demo1" /></p>
+		<p><button onclick="myFunction()">复制</button></p>
+		<p><input type="text"  id="demo2"/></p>
+		<a id="demo3"></a>
+		
+	</body>
+</html>
