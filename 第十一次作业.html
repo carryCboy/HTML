@@ -11,11 +11,55 @@
 		margin-left:40% ;
 	}
 </style>
+<script>
+	//用户名
+			function checkUserName() {
+				var fname = document.myform.txtUser.value;
+				if(fname.length != 0) {
+					for(i = 0; i < fname.length; i++) {
+						var ftext = fname.substring(i, i + 1);
+						if(ftext < 9 || ftext > 0) {
+							return true;
+						}
+
+					}
+				} else {
+					alert("用户名不能为空！");
+					pass.focus();
+					return false;
+
+				}
+				return true;
+			}
+			//密码
+			function checkPass() {
+				var userpass = document.myform.txtPass.value;
+				if(userpass == "") {
+					alert("密码不能为空！");
+					pass.focus();
+					return false;
+				}
+				//检查密码是否大于6小于12
+				if(userpass.length < 6 && userpass > 12) {
+					alert("密码长度为6-12字符");
+					return false;
+				}
+				return true;
+			}
+
+			function checkForm() {
+				if(checkUserName() && checkPass()) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+</script>
 	<body>
 		<div id="middle">
-			<form>
-			<p>姓名:<input type="text" /></p>
-			<p>密码:<input type="text" /></p>
+			<form name="myform" onSubmit="return checkForm()">
+			<p>姓名:<input name="txtUser" type="text" checkUserName() /></p>
+			<p>密码:<input name="txtPass" type="text" checkPass() /></p>
 			<p>性别:<input type="radio" value="0" name="sex" />男<input type="radio" value="1" name="sex" />女</p>
 			<p>血型:<input type="radio" value="2" name="blood" />O
 				<input type="radio" value="3" name="blood" />A
@@ -26,7 +70,7 @@
 				<input type="checkbox">温柔体贴
 				<input type="checkbox">多情善感
 			</p>
-			<p>文件:<input type="text"><input type="file" value="浏览"/></p>
+			<p>文件:<input type="file" /></p>
 			<p>简介:<input type="text"></p>
 			<p>城市:<select>
 				<option>
@@ -43,7 +87,8 @@
 				</option>
 			</select>
 			</p>
-			<p><button type="submit">提交</button> <button type="reset">重置</button></p>
+			<p><button type="submit">提交</button> 
+				<button type="reset">重置</button></p>
 			</form>
 		</div>
 	</body>
