@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			var c,ctx,image=new Image();
+			//初始化
+			window.onload=function(){
+				c=document.getElementById("myCanvas");
+				ctx=c.getContext('2d');
+				image.src="img/image.png"
+				big();
+			}
+			function big(){
+				ctx.clearRect(90,90,150,160);
+				ctx.drawImage(image,50,50,250,250);
+				setTimeout("small()",500);
+			}
+			function small(){
+				ctx.clearRect(50,50,250,250);
+				ctx.drawImage(image,90,90,150,150);
+				setTimeout("big()",500);
+			}
+			
+		</script>
+	</head>
+	<body> 
+		<canvas id="myCanvas" width="800px" height="700px" style="border: 1px solid black;"></canvas>
+	</body>
+</html>
