@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>实验二</title>
+	<link rel="stylesheet" href="./css/实验二.css">
+	<script src="./js/v3.2.8/vue.global.prod.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<h3>学生成绩录入系统</h3>
+		<div class="inputInfo">
+			<label for="studentName">姓名：</label>
+			<input type="text" id="studentName" placeholder="请输入学生的姓名......" v-model="newStudent.stuName" />
+		</div>
+		<div class="inputInfo">
+			<label for="studentID">学号：</label>
+			<input type="text" id="studentID" placeholder="请输入学生的学号......" v-model="newStudent.stuID" />
+		</div>
+		<div class="inputInfo">
+			<label for="studentScore_One">课程一（HTML5应用开发）：</label>
+			<input type="number" id="studentScore_One" placeholder="请输入课程成绩......"
+				v-model.number="newStudent.scoreOne" />
+		</div>
+		<div class="inputInfo">
+			<label for="studentScore_Two">课程二（JavaScript程序设计）：</label>
+			<input type="number" id="studentScore_Two" placeholder="请输入课程成绩......"
+				v-model.number="newStudent.scoreTwo" />
+		</div>
+		<div class="inputInfo">
+			<label for="studentScore_Three">课程三（前端框架（Vue.js）应用开发）：</label>
+			<input type="number" id="studentScore_Three" placeholder="请输入课程成绩......"
+				v-model.number="newStudent.scoreThree" />
+		</div>
+		<button class="btnStyle createBtn" @click="createNewStudent()">添加学生成绩</button>
+
+		<hr />
+		<!-- 学生信息列表 -->
+		<h3>学生成绩列表</h3>
+		<div class="optionBtn">
+			<button class="btnStyle averageBtn" @click="averageThree()">显示课程三的平均值</button>
+			<button class="btnStyle averageBtn" @click="averageTotal()">显示个人课程平均分</button>
+		</div>
+		<table class="studentList">
+			<thead>
+				<tr>
+					<td>姓名</td>
+					<td>学号</td>
+					<td>课程一<br />（HTML5应用开发）</td>
+					<td>课程二<br />（JavaScript程序设计）</td>
+					<td><a href="javascript:void(0)" @click="sortScoreThree()">课程三<br />（前端框架（Vue.js）应用开发）↑</a></td>
+					<td>个人课程<br />总分</td>
+					<td>个人课程<br />平均分</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(student,index) in  filteredStudents()">
+					<td>{{student.stuName}}</td>
+					<td>{{student.stuID}}</td>
+					<td>{{student.scoreOne}}</td>
+					<td>{{student.scoreTwo}}</td>
+					<td>{{student.scoreThree}}</td>
+					<td>{{scoreTotal(index)}}</td>
+					<td>{{student.scoreAverage}}</td>
+					<td>
+						<button class="btnStyle deleteBtn" @click="deleteStudent(index)">删除</button>
+					</td>
+				</tr>
+				<tr class="lastTr">
+					<td>平均分</td>
+					<td>/</td>
+					<td></td>
+					<td></td>
+					<td>{{averageThreeCourse}}</td>
+					<td>/</td>
+					<td>/</td>
+					<td>/</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="searchInfo">
+			按姓名搜索：<input type="text" v-model="search" />
+			<button class="btnStyle searchBtn" @click="filteredStudents()">搜索</button>
+		</div>
+	</div>
+
+	<script>
+		// 创建 Vue 实例
+		const app = Vue.createApp({
+			data() {
+				return {
+					students: [], // 存放学生信息的数组
+					newStudent: { stuName: '', stuID: '', scoreOne: 0, scoreTwo: 0, scoreThree: 0 }, // 新添加的学生信息
+					search: '' // 搜索框关键词
+				}
+			},
+			methods: {
+				createNewStudent() {
+					if (!this.newStudent.stuName.trim() || !this.newStudent.stuID.trim()) {
+						alert('请填写需要添加的学生姓名和学号');
+						return;
+					}
+
+					this.newStudent.scoreTotal = 0; // 新添加学生的总分数
+					this.newStudent.scoreAverage = 0; // 新添加学生的平均分
+					this.students.push({ ...this.newStudent });
+					this.newStudent.stuName = ''; // 清空输入框
+					this.newStudent.stuID = '';
+					this.newStudent.scoreOne = 0;
+					this.newStudent.scoreTwo = 0;
+					this.newStudent.scoreThree = 0;
+				}, // 添加学生信息的方法
+
+				deleteStudent(index) {
+					this.students.splice(index, 1);
+				}, // 删除指定学生信息的方法
+
+				scoreTotal(index) {
+					let student = this.students[index];
+					return student.scoreOne + student.scoreTwo + student.scoreThree;
+				}, // 计算指定学生总分
+
+				averageThree() {
+					const threeCourses = this.students.map(student => student.scoreThree);
+					let total = 0;
+					for (let i = 0; i < threeCourses.length; i++) {
+						total += threeCourses[i];
+					}
+					alert(`课程三的平均分是 ${(total / threeCourses.length).toFixed(2)}`);
+				}, // 显示课程三平均分的方法
+
+
+				averageTotal() {
+					const allScores = this.students.reduce((prev, cur) => {
+						return prev.concat([cur.scoreOne, cur.scoreTwo, cur.scoreThree]);
+					}, []);
+					let total = 0;
+					for (let i = 0; i < allScores.length; i++) {
+						total += allScores[i];
+					}
+					alert(`所有学生的平均成绩是 ${(total / allScores.length).toFixed(2)}`);
+				}, // 显示所有课程平均分的方法
+
+				sortScoreThree() {
+					this.students.sort((a, b) => b.scoreThree - a.scoreThree);
+				}, // 以课程三分数为主要排序方式进行排序
+
+				filteredStudents() {
+					const keyword = this.search.trim().toLowerCase();
+					if (!keyword) {
+						return this.students;
+					} else {
+						return this.students.filter(student => student.stuName.toLowerCase().indexOf(keyword) !== -1);
+					}
+				} // 根据搜索框关键词筛选学生信息的方法
+			},
+			computed: {
+				averageThreeCourse() {
+					let totalCount = 0;
+					let totalScoreThree = 0;
+					for (let i = 0; i < this.students.length; i++) {
+						totalCount++;
+						totalScoreThree += parseFloat(this.students[i].scoreThree);
+					}
+					return (totalScoreThree / totalCount).toFixed(2);
+				}
+
+			}
+		});
+
+		app.mount('#app');
+	</script>
+</body>
+
+</html>

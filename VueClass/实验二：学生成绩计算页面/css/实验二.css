@@ -1,0 +1,116 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-size: 18px;
+}
+h3 {
+	text-align: center;
+	margin: 20px 0px;
+	font-size: 36px;
+}
+.inputInfo {
+	width: 800px;
+	margin: 0px auto;
+	margin-bottom: 18px;
+}
+.inputInfo input[type="text"],
+.inputInfo input[type="number"]{
+	width: 800px;
+	height: 32px;
+	border-radius: 4px;
+	padding-left: 6px;
+}
+.inputInfo input[type="radio"]{
+	margin-right: 6px;
+	margin-left: 6px;
+}
+.inputInfo select {
+	width: 100px;
+	height: 32px;
+	border-radius: 4px;
+}
+.btnStyle {
+	display: block;
+	padding: 6px 12px;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	color: white;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	margin: 0px auto;
+	margin-bottom: 20px;
+}
+.createBtn {
+	background-color: #d9534f;
+	border-color: #d43f3a;
+}
+.optionBtn {
+	width: 800px;
+	margin: 0px auto;
+}
+.optionBtn>button {
+	display: inline-block;
+	margin-left: 10px;
+}
+.averageBtn,
+.sortBtn{
+	background-color: #E5E5E5;
+	border-color: #E5E5E5;
+	color: #333;
+	margin: 20px auto;
+}
+.studentList{
+	width: 1200px;
+	margin: 0px auto;
+	border-collapse:collapse;
+}
+.studentList thead tr td {
+	background-color: #6495ED;
+}
+.studentList thead tr td>a{
+	font-size: 20px;
+	text-decoration: none;
+	color: #333;
+}
+.lastTr{
+	font-size: 20px;
+	font-weight: bold;
+}
+.studentList td {
+	height: 60px;
+	text-align: center;
+	border: 1px solid #ddd;
+	font-size: 20px;
+}
+.deleteBtn{
+	background-color: #428bca;
+	border-color: #357ebd;
+	margin: 0px auto;
+}
+.searchBtn {
+	background-color: #5bc0de;
+	border-color: #46b8da;
+	height: 20px;
+	margin: 0px 10px;
+	font-size: 14px;
+}
+.searchInfo {
+	width: 800px;
+	height: 50px;
+	margin: 0px auto;
+	line-height: 50px;
+	font-size: 20px;
+}
+.searchInfo>input {
+	height: 28px;
+	border-radius: 4px;
+	padding-left: 6px;
+}
+.searchInfo>button {
+	height: 34px;
+	font-size: 20px;
+	line-height: 20px;
+	display: inline-block;
+}
