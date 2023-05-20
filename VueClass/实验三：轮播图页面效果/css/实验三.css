@@ -1,0 +1,60 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ul li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.banner {
+	width: 1080px;
+	height: 720px;
+	margin: 20px auto;
+	position: relative;
+}
+.bannerImg img{
+	width: 1080px;
+	height: 720px;
+	position: absolute;
+	z-index: 800;
+}
+.bannerItems{
+	position: absolute;
+	z-index: 1000;
+	bottom: 0;
+	width: 100%;
+	padding: 10px 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.bannerItems span{
+	width: 30px;
+	height: 30px;
+	background:  rgba(100, 100, 100, .6);
+	margin: 0 5px;
+	border-radius: 50%;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: Microsoft YaHei;
+	line-height: 30px;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+.bannerItems span.active{
+	background-color: red;
+}
+
+/* 过渡效果样式-实现图片的淡入淡出效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 3s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

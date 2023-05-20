@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>实验三</title>
+		<link rel="stylesheet" href="./css/实验三.css">
+	</head>
+	<body>
+		<div id="app">
+			<div class="banner">
+			  <!--切换的图片-->
+			  <div class="bannerImg">
+				<transition-group name="fade" tag="ul" class="slideUl">
+				  <li v-for="(list, index) in slideList" :key="index" v-show="(index % slideList.length) === currentIndex" @mouseenter="stop" @mouseleave="go">
+					<a :href="list.clickURL">
+					  <img :src="list.image" :alt="list.desc" />
+					</a>
+				  </li>
+				</transition-group>
+			  </div>
+			  <!--切换的小按钮-->
+			  <div class="bannerItems">
+				<span v-for="(item, index) in slideList.length" :class="[{'active': (index % slideList.length) === currentIndex }]" @mouseover="change(index)">{{ index + 1 }}</span>
+			  </div>
+			</div>
+		  </div>
+		
+		<script src="./js/v3.2.8/vue.global.prod.js"></script>
+		<script src="./js/实验三.js"></script>
+	</body>
+</html>
